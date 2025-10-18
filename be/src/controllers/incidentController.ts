@@ -41,3 +41,23 @@ export const createIncident = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Failed to analyze incident" });
   }
 };
+
+// Return a small sample list of incidents for frontend demos
+export const getSampleIncidents = (req: Request, res: Response) => {
+  const sample = [
+    {
+      id: "1",
+      description: "User reported inability to login to service A",
+      analysis: { severity: "medium", category: "authentication" },
+      createdAt: new Date().toISOString(),
+    },
+    {
+      id: "2",
+      description: "High error rate on payments endpoint",
+      analysis: { severity: "high", category: "payments" },
+      createdAt: new Date().toISOString(),
+    },
+  ];
+
+  res.json({ items: sample });
+};

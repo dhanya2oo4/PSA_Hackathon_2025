@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createIncident = exports.getIncidentById = exports.getAllIncidents = void 0;
+exports.getSampleIncidents = exports.createIncident = exports.getIncidentById = exports.getAllIncidents = void 0;
 const ml_service_1 = require("../services/ml-service");
 let incidents = []; // In-memory store for now
 const getAllIncidents = (req, res) => {
@@ -39,3 +39,22 @@ const createIncident = async (req, res) => {
     }
 };
 exports.createIncident = createIncident;
+// Return a small sample list of incidents for frontend demos
+const getSampleIncidents = (req, res) => {
+    const sample = [
+        {
+            id: "1",
+            description: "User reported inability to login to service A",
+            analysis: { severity: "medium", category: "authentication" },
+            createdAt: new Date().toISOString(),
+        },
+        {
+            id: "2",
+            description: "High error rate on payments endpoint",
+            analysis: { severity: "high", category: "payments" },
+            createdAt: new Date().toISOString(),
+        },
+    ];
+    res.json({ items: sample });
+};
+exports.getSampleIncidents = getSampleIncidents;
